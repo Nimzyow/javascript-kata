@@ -1,27 +1,90 @@
 /**
  *
+ *.****************** VERY EVEN NUMBERS.******************
+ */
+
+// Write a function that returns true if the number is a "Very Even" number.
+
+// If the number is odd, it is not a "Very Even" number.
+
+// If the number is even, return whether the sum of the digits is a "Very Even" number.
+
+// #Examples:
+
+// input(88) => returns false -> 8 + 8 = 16 -> 1 + 6 = 7 => 7 is odd
+
+// input(222) => returns true
+
+// input(5) => returns false
+// Note: The numbers will always be positive!
+function returnArray(n) {
+  num = n
+    .toString()
+    .split("")
+    .map(num => {
+      return parseInt(num, 10);
+    });
+  return num;
+}
+
+function isVeryEvenNumber(n) {
+  if (n == 0) {
+    return true;
+  } else if (n < 10) {
+    return n % 2 == 0 ? true : false;
+  }
+  let number = returnArray(n);
+  let sum = 0;
+  do {
+    for (let i = 0; i < number.length; i++) {
+      sum += number[i];
+    }
+    number = returnArray(sum);
+    sum = 0;
+  } while (number.length > 1);
+  return Number(number.toString().split("")) % 2 == 0 ? true : false;
+}
+
+isVeryEvenNumber(199);
+
+// best practice
+
+// function isVeryEvenNumber(n) {
+//   while (n.toString().length > 1) {
+//     let array = n.toString().split('')
+//     n = array.reduce((a, b) => Number(a) + Number(b), 0)
+//   }
+//   if (!(n % 2 === 0)) {
+//     return false;
+//   }
+
+//   return true;
+// }
+
+/**
+ *
  *.****************** ROT 13 TEST.******************
  */
 
-function rot13(str) {
-  // LBH QVQ VG!
-  //the below RegExp is going to be used to test whether there is character at a specific position of a string
-  var re = new RegExp("[a-z]", "i");
-  var min = "A".charCodeAt(0);
-  var max = "Z".charCodeAt(0);
-  var factor = 13;
-  var result = "";
-  str = str.toUpperCase();
-  for (var i = 0; i < str.length; i++) {
-    result += re.test(str[i])
-      ? String.fromCharCode(
-          ((str.charCodeAt(i) - min + factor) % (max - min + 1)) + min
-        ) //e.g: "hello" hello is string and the charCodeAt(i) for H is 72. so the above calc is: 72 - 65 + 13 = 20. max - min + 1 = 90 - 65 + 1 = 26. 20 % 26 = 20 + 65 = 85.
-      : str[i];
-  }
+// function rot13(str) {
+//   // LBH QVQ VG!
+//   //the below RegExp is going to be used to test whether there is character at a specific position of a string
+//   var re = new RegExp("[a-z]", "i");
+//   var min = "A".charCodeAt(0);
+//   var max = "Z".charCodeAt(0);
+//   var factor = 13;
+//   var result = "";
+//   str = str.toUpperCase();
+//   for (var i = 0; i < str.length; i++) {
+//     result += re.test(str[i])
+//       ? String.fromCharCode(
+//           ((str.charCodeAt(i) - min + factor) % (max - min + 1)) + min
+//         ) //e.g: "hello" hello is string and the charCodeAt(i) for H is 72. so the above calc is: 72 - 65 + 13 = 20. max - min + 1 = 90 - 65 + 1 = 26. 20 % 26 = 20 + 65 = 85.
+//       : str[i];
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
 //console.log(rot13("hello and welcome"));
 
@@ -172,34 +235,34 @@ function rot13(str) {
 //example:  "This is an example!" ==> "sihT si na !elpmaxe"
 //          "double  spaces"      ==> "elbuod  secaps"
 
-reverseWords = str => {
-  return str
-    .split(" ")
-    .map(word => {
-      return word
-        .split("")
-        .reverse()
-        .join("");
-    })
-    .join(" ");
-};
-console.log(reverseWords("This is an example"));
+// reverseWords = str => {
+//   return str
+//     .split(" ")
+//     .map(word => {
+//       return word
+//         .split("")
+//         .reverse()
+//         .join("");
+//     })
+//     .join(" ");
+// };
+// console.log(reverseWords("This is an example"));
 
-//Reverse words on my own
+// //Reverse words on my own
 
-function reverseWordsOMO(str) {
-  return str
-    .split(" ")
-    .map(function(word) {
-      return word
-        .split("")
-        .reverse()
-        .join("");
-    })
-    .join(" ");
-}
+// function reverseWordsOMO(str) {
+//   return str
+//     .split(" ")
+//     .map(function(word) {
+//       return word
+//         .split("")
+//         .reverse()
+//         .join("");
+//     })
+//     .join(" ");
+// }
 
-console.log(reverseWordsOMO("lets try reversing this"));
+// console.log(reverseWordsOMO("lets try reversing this"));
 
 /**
  * The Western Suburbs Croquet Club has two categories of membership, Senior and Open. They would like your help with an application form that will tell prospective members which category they will be placed.
@@ -213,47 +276,47 @@ Note for F#: The input will be of (int list list) which is a List<List>
 
 Example Input
 [[18, 20],[45, 2],[61, 12],[37, 6],[21, 21],[78, 9]]
- */
+//  */
 
-membership = list => {
-  let membershipOption = [];
-  list.map(member => {
-    if (member[0] >= 55 && member[1] > 7) {
-      membershipOption.push("Senior");
-    } else if (member[0] >= 55 && member[1] <= 7) {
-      membershipOption.push("Open");
-    } else if (member[0] < 55) {
-      membershipOption.push("Open");
-    }
-  });
-  return membershipOption;
-};
+// membership = list => {
+//   let membershipOption = [];
+//   list.map(member => {
+//     if (member[0] >= 55 && member[1] > 7) {
+//       membershipOption.push("Senior");
+//     } else if (member[0] >= 55 && member[1] <= 7) {
+//       membershipOption.push("Open");
+//     } else if (member[0] < 55) {
+//       membershipOption.push("Open");
+//     }
+//   });
+//   return membershipOption;
+// };
 
-console.log(
-  membership([
-    [18, 20],
-    [45, 2],
-    [61, 12],
-    [37, 6],
-    [21, 21],
-    [78, 9]
-  ])
-);
+// console.log(
+//   membership([
+//     [18, 20],
+//     [45, 2],
+//     [61, 12],
+//     [37, 6],
+//     [21, 21],
+//     [78, 9]
+//   ])
+// );
 
-//Pro solution
-function openOrSenior(data) {
-  return data.map(([age, handicap]) =>
-    age > 54 && handicap > 7 ? "Senior" : "Open"
-  );
-}
+// //Pro solution
+// function openOrSenior(data) {
+//   return data.map(([age, handicap]) =>
+//     age > 54 && handicap > 7 ? "Senior" : "Open"
+//   );
+// }
 
-console.log(
-  openOrSenior([
-    [18, 20],
-    [45, 2],
-    [61, 12],
-    [37, 6],
-    [21, 21],
-    [78, 9]
-  ])
-);
+// console.log(
+//   openOrSenior([
+//     [18, 20],
+//     [45, 2],
+//     [61, 12],
+//     [37, 6],
+//     [21, 21],
+//     [78, 9]
+//   ])
+// );
