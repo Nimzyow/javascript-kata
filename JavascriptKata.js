@@ -18,13 +18,12 @@
 // input(5) => returns false
 // Note: The numbers will always be positive!
 function returnArray(n) {
-  num = n
+  return n
     .toString()
     .split("")
     .map(num => {
       return parseInt(num, 10);
     });
-  return num;
 }
 
 function isVeryEvenNumber(n) {
@@ -45,7 +44,7 @@ function isVeryEvenNumber(n) {
   return Number(number.toString().split("")) % 2 == 0 ? true : false;
 }
 
-isVeryEvenNumber(199);
+isVeryEvenNumber(200);
 
 // best practice
 
