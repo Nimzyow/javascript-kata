@@ -1,3 +1,36 @@
+/*A pangram is a sentence that contains every single letter of the alphabet at least once. For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the letters A-Z at least once (case is irrelevant).
+
+Given a string, detect whether or not it is a pangram. Return True if it is, False if not. Ignore numbers and punctuation.*/
+
+function isPangram(string) {
+  str = string
+    .toLowerCase()
+    .split(" ")
+    .join("");
+  alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+  returnedAlphabet = [];
+  alphabet.map(letter => {
+    if (str.includes(letter)) {
+      returnedAlphabet.push(letter);
+    }
+  });
+  return returnedAlphabet.length === 26 ? true : false;
+}
+isPangram("Pack my box with five dozen liquor jugs.");
+
+// best practices
+/**
+ function isPangram(string){
+  return (string.match(/([a-z])(?!.*\1)/ig) || []).length === 26;
+}
+
+//another one
+function isPangram(string){
+  return 'abcdefghijklmnopqrstuvwxyz'
+    .split('')
+    .every((x) => string.toLowerCase().includes(x));
+}
+ */
 /**
  *
  *.****************** VERY EVEN NUMBERS.******************
@@ -17,6 +50,7 @@
 
 // input(5) => returns false
 // Note: The numbers will always be positive!
+/*
 function returnArray(n) {
   return n
     .toString()
@@ -45,7 +79,7 @@ function isVeryEvenNumber(n) {
 }
 
 isVeryEvenNumber(200);
-
+*/
 // best practice
 
 // function isVeryEvenNumber(n) {
